@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import Container from '@mui/material/Container';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Login from './pages/Login';
+import Staff from './pages/Staff'
+import ProtectRoute from './route/protectRoute';
+import Header from './components/header';
+import AddStaff from './pages/AddStaff';
+import UpdateStaff from './pages/UpdateStaff';
 
-function App() {
+
+export default function App() {
+  let token = localStorage.getItem("token")
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        {token && <Header />}
+        <Container maxWidth="lg">
+          <Switch>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <ProtectRoute exact path="/">
+              <Staff />
+            </ProtectRoute>
+            <ProtectRoute exact path="/addstaff">
+              <AddStaff />
+            </ProtectRoute>
+            <ProtectRoute exact path="/:id">
+              <UpdateStaff />
+            </ProtectRoute>
+          </Switch>
+        </Container>
+      </Router>
+    </>
   );
 }
-
-export default App;
