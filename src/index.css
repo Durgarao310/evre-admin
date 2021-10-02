@@ -81,3 +81,11 @@ th, td {
 label{
   margin-bottom: 2%;
 }
+.device_logs{
+  text-decoration: none ;
+  color: green;
+}
+.update_staff_header{
+  text-align: center;
+  color: green;
+}

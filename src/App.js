@@ -1,20 +1,16 @@
-import * as React from 'react';
-import Container from '@mui/material/Container';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-import Login from './pages/Login';
-import Staff from './pages/Staff'
-import ProtectRoute from './route/protectRoute';
-import Header from './components/header';
-import AddStaff from './pages/AddStaff';
-import UpdateStaff from './pages/UpdateStaff';
-
+import * as React from "react";
+import Container from "@mui/material/Container";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Staff from "./pages/Staff";
+import ProtectRoute from "./route/protectRoute";
+import Header from "./components/header";
+import AddStaff from "./pages/AddStaff";
+import UpdateStaff from "./pages/UpdateStaff";
+import DeviceLogs from "./pages/DeviceLogs";
 
 export default function App() {
-  let token = localStorage.getItem("token")
+  let token = localStorage.getItem("token");
   return (
     <>
       <Router>
@@ -29,6 +25,9 @@ export default function App() {
             </ProtectRoute>
             <ProtectRoute exact path="/addstaff">
               <AddStaff />
+            </ProtectRoute>
+            <ProtectRoute exact path="/devicelogs">
+              <DeviceLogs />
             </ProtectRoute>
             <ProtectRoute exact path="/:id">
               <UpdateStaff />
